@@ -8,14 +8,14 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="عظمة وجلال مصر">
 <meta property="og:description" content="رحلة عبر سبعة آلاف عام من الإبداع والحضارة التي أضاءت دروب البشرية">
-<meta property="og:image" content="hero.jpg">
+<meta property="og:image" content="https://fady-shehab.github.io/egypt-greatness/img/hero.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:locale" content="ar_EG">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="عظمة وجلال مصر">
 <meta name="twitter:description" content="رحلة عبر سبعة آلاف عام من الإبداع والحضارة التي أضاءت دروب البشرية">
-<meta name="twitter:image" content="hero.jpg">
+<meta name="twitter:image" content="https://fady-shehab.github.io/egypt-greatness/img/hero.jpg">
 <meta name="theme-color" content="#0A0A0A">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230A0A0A'/%3E%3Ctext y='.85em' font-size='80' text-anchor='middle' x='50'%3E%E2%98%A5%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -146,7 +146,7 @@ button{font-family:'Cairo',sans-serif;cursor:pointer}
 .tl-title{color:var(--text-primary);font-size:1.15rem;font-weight:700;margin-bottom:4px}
 .tl-date{color:var(--accent);font-size:.82rem;font-weight:500;margin-bottom:4px}
 .tl-teaser{color:var(--text-secondary);font-size:.85rem}
-.tl-item:focus{outline:2px solid var(--accent);outline-offset:4px;border-radius:8px}
+.tl-item:focus{border-radius:8px}
 
 /* ── CONTENT CARDS ── */
 .cards-col{display:flex;flex-direction:column;gap:40px}
@@ -305,7 +305,23 @@ textarea.form-input{resize:vertical;min-height:90px;padding-bottom:28px}
 .footer__divider{width:40px;height:1px;background:var(--border-gold);border-radius:1px}
 .footer__copy{font-size:.75rem;color:var(--text-muted)}
 
-/* ── TEAM SECTION ── */
+.modal__nav{display:flex;align-items:center;justify-content:space-between;margin-top:24px;padding-top:20px;border-top:1px solid var(--border-gold)}
+.modal__nav-btn{display:flex;align-items:center;gap:6px;background:transparent;border:1px solid var(--border-gold);color:var(--accent);font-family:'Cairo',sans-serif;font-size:.85rem;font-weight:700;padding:8px 16px;border-radius:8px;transition:all var(--trans)}
+.modal__nav-btn:hover:not(:disabled){background:var(--accent);color:var(--bg-base)}
+.modal__nav-btn:disabled{opacity:.3;cursor:not-allowed}
+.modal__nav-btn svg{width:16px;height:16px;flex-shrink:0}
+.modal__nav-counter{font-size:.8rem;font-weight:700;color:var(--text-muted)}
+.modal__nav-counter span{color:var(--accent)}
+.tl-nav{display:flex;align-items:center;justify-content:center;gap:16px;margin-top:32px}
+.tl-nav__btn{width:48px;height:48px;border-radius:50%;background:var(--bg-card);border:1px solid var(--border-gold);color:var(--accent);display:flex;align-items:center;justify-content:center;transition:all var(--trans);flex-shrink:0}
+.tl-nav__btn:hover:not(:disabled){background:var(--accent);color:var(--bg-base);transform:scale(1.08);box-shadow:var(--shadow-gold)}
+.tl-nav__btn:disabled{opacity:.3;cursor:not-allowed;border-color:var(--border)}
+.tl-nav__btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.tl-nav__info{font-size:.82rem;font-weight:700;color:var(--text-muted);min-width:60px;text-align:center;letter-spacing:.05em}
+.tl-nav__info span{color:var(--accent)}
+/* Active timeline item highlight */
+.tl-item.tl-active .tl-card{box-shadow:var(--shadow-gold)}
+.tl-item.tl-active .tl-dot{background:var(--accent);box-shadow:0 0 12px var(--accent-glow)}
 .team-section{background:var(--bg-base);padding:90px 20px;position:relative;overflow:hidden}
 .team-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(212,175,55,0.06) 0%,transparent 70%);pointer-events:none}
 .team-section__inner{max-width:1000px;margin:0 auto;position:relative;z-index:1}
@@ -472,10 +488,20 @@ textarea.form-input{resize:vertical;min-height:90px;padding-bottom:28px}
         <div class="tl-card"><span class="tl-era">العصر الحديث</span><h3 class="tl-title">الصحوة والنهضة</h3><p class="tl-date">١٨٠٥ – الآن</p><p class="tl-teaser">من محمد علي إلى الجمهورية الجديدة</p></div>
       </button>
     </div>
+
+    <!-- أسهم التنقل بين العصور -->
+    <div class="tl-nav rev" id="tl-nav" aria-label="التنقل بين العصور">
+      <button class="tl-nav__btn" id="tl-prev" aria-label="العصر السابق" disabled>
+        <svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+      <span class="tl-nav__info"><span id="tl-current">1</span> / <span id="tl-total">7</span></span>
+      <button class="tl-nav__btn" id="tl-next" aria-label="العصر التالي">
+        <svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+    </div>
+
   </div>
 </section>
-
-<!-- 02 MONUMENTS -->
 <section id="monuments" class="section section--alt">
   <div class="section__inner">
     <header class="section__header rev">
@@ -763,6 +789,17 @@ textarea.form-input{resize:vertical;min-height:90px;padding-bottom:28px}
     <h2 id="modal-title" class="modal__title"></h2>
     <img id="modal-img" class="modal__img hidden" alt="" loading="lazy">
     <div id="modal-body" class="modal__body"></div>
+    <div class="modal__nav">
+      <button class="modal__nav-btn" id="modal-prev" aria-label="العصر السابق">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+        السابق
+      </button>
+      <span class="modal__nav-counter"><span id="modal-current">1</span> / <span id="modal-total">7</span></span>
+      <button class="modal__nav-btn" id="modal-next" aria-label="العصر التالي">
+        التالي
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+    </div>
   </div>
 </div>
 
@@ -935,25 +972,49 @@ const tlObs = new IntersectionObserver(entries => {
 document.querySelectorAll('.tl-item').forEach((el, i) => { el.style.transitionDelay = (i * 0.1) + 's'; tlObs.observe(el); });
 
 // ── MODAL ──
-const $modal  = document.getElementById('modal');
-const $mTitle = document.getElementById('modal-title');
-const $mImg   = document.getElementById('modal-img');
-const $mBody  = document.getElementById('modal-body');
-let prevFocus = null;
+const $modal      = document.getElementById('modal');
+const $mTitle     = document.getElementById('modal-title');
+const $mImg       = document.getElementById('modal-img');
+const $mBody      = document.getElementById('modal-body');
+const $mPrev      = document.getElementById('modal-prev');
+const $mNext      = document.getElementById('modal-next');
+const $mCurrent   = document.getElementById('modal-current');
+const $mTotal     = document.getElementById('modal-total');
+const tlButtons   = [...document.querySelectorAll('.tl-item')];
+let prevFocus     = null;
 let modalBodyOverflow = '';
+let currentTlIdx  = 0;
 
-const openModal = (title, imgSrc, body, trigger) => {
-  prevFocus = trigger;
-  $mTitle.textContent = title;
-  $mBody.textContent = body;
-  if (imgSrc) { $mImg.src = imgSrc; $mImg.alt = title; $mImg.classList.remove('hidden'); }
+if ($mTotal) $mTotal.textContent = tlButtons.length;
+
+const loadEra = (idx) => {
+  currentTlIdx = idx;
+  const btn = tlButtons[idx];
+  $mTitle.textContent = btn.dataset.title;
+  $mBody.textContent  = btn.dataset.body;
+  const imgSrc = btn.dataset.img;
+  if (imgSrc) { $mImg.src = imgSrc; $mImg.alt = btn.dataset.title; $mImg.classList.remove('hidden'); }
   else { $mImg.classList.add('hidden'); }
+  // Update counter
+  if ($mCurrent) $mCurrent.textContent = idx + 1;
+  // Update buttons
+  if ($mPrev) $mPrev.disabled = idx === 0;
+  if ($mNext) $mNext.disabled = idx === tlButtons.length - 1;
+  // Scroll modal to top
+  const box = $modal.querySelector('.modal__box');
+  if (box) box.scrollTop = 0;
+};
+
+const openModal = (idx, trigger) => {
+  prevFocus = trigger || tlButtons[idx];
+  loadEra(idx);
   $modal.classList.add('open');
   $modal.setAttribute('aria-hidden', 'false');
   modalBodyOverflow = document.body.style.overflow;
   document.body.style.overflow = 'hidden';
   setTimeout(() => $modal.querySelector('.modal__close').focus(), 60);
 };
+
 const closeModal = () => {
   $modal.classList.remove('open');
   $modal.setAttribute('aria-hidden', 'true');
@@ -961,10 +1022,18 @@ const closeModal = () => {
   if (prevFocus) { prevFocus.focus(); prevFocus = null; }
 };
 
+// Nav buttons inside modal
+if ($mPrev) $mPrev.addEventListener('click', () => { if (currentTlIdx > 0) loadEra(currentTlIdx - 1); });
+if ($mNext) $mNext.addEventListener('click', () => { if (currentTlIdx < tlButtons.length - 1) loadEra(currentTlIdx + 1); });
+
 document.querySelectorAll('[data-close]').forEach(el => el.addEventListener('click', closeModal));
+
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && $modal.classList.contains('open')) { closeModal(); return; }
-  if (e.key === 'Tab' && $modal.classList.contains('open')) {
+  if (!$modal.classList.contains('open')) return;
+  if (e.key === 'Escape') { closeModal(); return; }
+  if (e.key === 'ArrowLeft'  || e.key === 'ArrowDown')  { e.preventDefault(); if (currentTlIdx < tlButtons.length - 1) loadEra(currentTlIdx + 1); }
+  if (e.key === 'ArrowRight' || e.key === 'ArrowUp')    { e.preventDefault(); if (currentTlIdx > 0) loadEra(currentTlIdx - 1); }
+  if (e.key === 'Tab') {
     const foc = [...$modal.querySelectorAll('button,[href],input,textarea,[tabindex]:not([tabindex="-1"])')];
     if (!foc.length) return;
     if (e.shiftKey && document.activeElement === foc[0]) { e.preventDefault(); foc[foc.length - 1].focus(); }
@@ -972,10 +1041,10 @@ document.addEventListener('keydown', e => {
   }
 });
 
-document.querySelectorAll('.tl-item').forEach(btn => {
-  const open = () => openModal(btn.dataset.title, btn.dataset.img, btn.dataset.body, btn);
-  btn.addEventListener('click', open);
-  btn.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+// Open modal from timeline items
+tlButtons.forEach((btn, idx) => {
+  btn.addEventListener('click', () => openModal(idx, btn));
+  btn.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openModal(idx, btn); } });
 });
 
 // ── COUNTERS ──
@@ -1095,6 +1164,43 @@ $form.addEventListener('submit', e => {
   $cc.textContent = '0';
   showFact(`شكراً يا ${san(name)}! تم تدوين عهدك في سجلات مصر الرقمية ✦`);
 });
+
+// ── TIMELINE NAVIGATION ──
+const $tlItems   = document.querySelectorAll('.tl-item');
+const $tlPrev    = document.getElementById('tl-prev');
+const $tlNext    = document.getElementById('tl-next');
+const $tlCurrent = document.getElementById('tl-current');
+const $tlTotal   = document.getElementById('tl-total');
+let tlIndex = 0;
+
+if ($tlTotal) $tlTotal.textContent = $tlItems.length;
+
+const goToEra = (idx) => {
+  // Remove active from all
+  $tlItems.forEach(el => el.classList.remove('tl-active'));
+  // Set new index
+  tlIndex = Math.max(0, Math.min(idx, $tlItems.length - 1));
+  // Add active to current
+  const $current = $tlItems[tlIndex];
+  $current.classList.add('tl-active');
+  // Update counter
+  if ($tlCurrent) $tlCurrent.textContent = tlIndex + 1;
+  // Update buttons
+  if ($tlPrev) $tlPrev.disabled = tlIndex === 0;
+  if ($tlNext) $tlNext.disabled = tlIndex === $tlItems.length - 1;
+  // Smooth scroll to item
+  const navH = getNavH();
+  const itemTop = $current.getBoundingClientRect().top + window.scrollY - navH - 24;
+  window.scrollTo({ top: itemTop, behavior: 'smooth' });
+};
+
+if ($tlPrev) $tlPrev.addEventListener('click', () => goToEra(tlIndex - 1));
+if ($tlNext) $tlNext.addEventListener('click', () => goToEra(tlIndex + 1));
+
+// Init first item as active
+if ($tlItems.length) {
+  $tlItems[0].classList.add('tl-active');
+}
 
 // ── BACK TO TOP ──
 const $btt = document.getElementById('back-top');

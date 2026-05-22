@@ -43,6 +43,7 @@
 ```
 egypt-greatness/
 ├── index.html
+├── 404.html
 └── img/
     ├── hero.jpg
     ├── mon-pyramids.jpg
